@@ -1,15 +1,15 @@
 # Moji Chat App Realtime
 
-Moji Chat App Realtime la du an chat app tach rieng `frontend` va `backend`.
-Trang thai hien tai cua repo tap trung vao auth co ban: dang ky, dang nhap, refresh token, logout va lay thong tin user dang nhap. Phan chat realtime chua duoc trien khai day du trong source hien tai.
+Moji Chat App Realtime là dự án chat app tách riêng `frontend` và `backend`.
+Trạng thái hiện tại của repo tập trung vào auth cơ bản: đăng ký, đăng nhập, refresh token, logout và lấy thông tin user đang đăng nhập. Phần chat realtime chưa được triển khai đầy đủ trong source hiện tại.
 
-## Cong nghe su dung
+## Công nghệ sử dụng
 
 - Frontend: React 19, TypeScript, Vite, Tailwind CSS, Zustand, React Router, Axios
 - Backend: Node.js, Express, Mongoose, JWT, bcrypt, cookie-parser, CORS
 - Database: MongoDB
 
-## Cau truc thu muc
+## Cấu trúc thư mục
 
 ```text
 Moji_ChatApp_RealTime/
@@ -36,17 +36,17 @@ Moji_ChatApp_RealTime/
 `-- README.md
 ```
 
-## Chuc nang hien co
+## Chức năng hiện có
 
-- Dang ky tai khoan
-- Dang nhap bang username va password
-- Tao `access token` bang JWT
-- Luu `refresh token` trong cookie `httpOnly`
-- Tu dong refresh access token khi het han
-- Bao ve route o frontend va backend
-- Lay thong tin user hien tai qua `/api/users/me`
+- Đăng ký tài khoản
+- Đăng nhập bằng username và password
+- Tạo `access token` bằng JWT
+- Lưu `refresh token` trong cookie `httpOnly`
+- Tự động refresh access token khi hết hạn
+- Bảo vệ route ở frontend và backend
+- Lấy thông tin user hiện tại qua `/api/users/me`
 
-## API hien co
+## API hiện có
 
 ### Auth
 
@@ -59,31 +59,31 @@ Moji_ChatApp_RealTime/
 
 - `GET /api/users/me`
 
-## Yeu cau moi truong
+## Yêu cầu môi trường
 
 - Node.js `>= 22.12.0`
 - npm `>= 10`
-- MongoDB connection string hop le
+- MongoDB connection string hợp lệ
 
-## Cai dat
+## Cài đặt
 
-### 1. Cai dependencies cho backend
+### 1. Cài dependencies cho backend
 
 ```powershell
 cd backend
 npm install
 ```
 
-### 2. Cai dependencies cho frontend
+### 2. Cài dependencies cho frontend
 
 ```powershell
 cd ../frontend
 npm install
 ```
 
-## Cau hinh moi truong backend
+## Cấu hình môi trường backend
 
-Tao file `backend/.env`:
+Tạo file `backend/.env`:
 
 ```env
 PORT=5001
@@ -92,61 +92,61 @@ CLIENT_URL=http://localhost:5173
 ACCESS_TOKEN_SECRET=<your-random-secret>
 ```
 
-Co the tao `ACCESS_TOKEN_SECRET` bang Node.js:
+Có thể tạo `ACCESS_TOKEN_SECRET` bằng Node.js:
 
 ```js
 require('crypto').randomBytes(64).toString('hex')
 ```
 
-## Chay du an
+## Chạy dự án
 
-### Chay backend
+### Chạy backend
 
 ```powershell
 cd backend
 npm run dev
 ```
 
-Backend mac dinh chay tai:
+Backend mặc định chạy tại:
 
 ```text
 http://localhost:5001
 ```
 
-### Chay frontend
+### Chạy frontend
 
-Mo terminal khac:
+Mở terminal khác:
 
 ```powershell
 cd frontend
 npm run dev
 ```
 
-Frontend mac dinh chay tai:
+Frontend mặc định chạy tại:
 
 ```text
 http://localhost:5173
 ```
 
-## Luong xac thuc hien tai
+## Luồng xác thực hiện tại
 
-1. User dang nhap tai frontend.
-2. Backend kiem tra username va password.
-3. Neu hop le, backend tra `accessToken` trong response va set `refreshToken` vao cookie.
-4. Frontend luu `accessToken` trong Zustand store.
-5. Khi goi API private, frontend gan `Authorization: Bearer <token>`.
-6. Neu access token het han, Axios interceptor tu goi `/api/auth/refresh`.
+1. User đăng nhập tại frontend.
+2. Backend kiểm tra username và password.
+3. Nếu hợp lệ, backend trả `accessToken` trong response và set `refreshToken` vào cookie.
+4. Frontend lưu `accessToken` trong Zustand store.
+5. Khi gọi API private, frontend gắn `Authorization: Bearer <token>`.
+6. Nếu access token hết hạn, Axios interceptor tự gọi `/api/auth/refresh`.
 
-## Luu y
+## Lưu ý
 
-- Repo hien tai chua co `Socket.IO`, WebSocket hoac message realtime.
-- Neu gap loi `querySrv ECONNREFUSED` voi MongoDB Atlas, uu tien kiem tra connection string, DNS va trang thai cluster.
-- File `frontend/README.md` hien van la README mac dinh cua Vite va khong mo ta du an nay.
+- Repo hiện tại chưa có `Socket.IO`, WebSocket hoặc message realtime.
+- Nếu gặp lỗi `querySrv ECONNREFUSED` với MongoDB Atlas, ưu tiên kiểm tra connection string, DNS và trạng thái cluster.
+- File `frontend/README.md` hiện vẫn là README mặc định của Vite và không mô tả dự án này.
 
-## Dinh huong tiep theo
+## Định hướng tiếp theo
 
-- Them model tin nhan va conversation
-- Them realtime bang Socket.IO hoac WebSocket
-- Hien thi danh sach user va cua so chat
-- Upload avatar va cap nhat ho so
-- Bo sung validation va test
+- Thêm model tin nhắn và conversation
+- Thêm realtime bằng Socket.IO hoặc WebSocket
+- Hiển thị danh sách user và cửa sổ chat
+- Upload avatar và cập nhật hồ sơ
+- Bổ sung validation và test
